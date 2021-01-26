@@ -45,19 +45,16 @@ class Mqtt
     protected $qos = 0;
     protected $retain = 0;
 
-    public function __construct()
+    public function __construct($config=null)
     {
-        $this->host         = config('mqtt.host');
-        $this->username     = config('mqtt.username');
-        $this->password     = config('mqtt.password');
-        $this->cert_file    = config('mqtt.certfile');
-        $this->local_cert   = config('mqtt.localcert');
-        $this->local_pk     = config('mqtt.localpk');
-        $this->port         = config('mqtt.port');
-        $this->timeout      = config('mqtt.timeout');
-        $this->debug        = config('mqtt.debug');
-        $this->qos          = config('mqtt.qos');
-        $this->retain       = config('mqtt.retain');
+        $this->host      = $config && isset($config['host']) ? $config['host'] :config('mqtt.host');
+        $this->username  = $config && isset($config['username']) ? $config['username'] :config('mqtt.username');
+        $this->password  = $config && isset($config['password']) ? $config['password'] :config('mqtt.password');
+        $this->cert_file = $config && isset($config['certfile']) ? $config['certfile'] :config('mqtt.certfile');
+        $this->port      = $config && isset($config['port']) ? $config['port'] :config('mqtt.port');
+        $this->debug     = $config && isset($config['debug']) ? $config['debug'] :config('mqtt.debug');
+        $this->qos       = $config && isset($config['qos']) ? $config['qos'] :config('mqtt.qos');
+        $this->retain    = $config && isset($config['retain']) ? $config['retain'] :config('mqtt.retain');
     }
 
 
